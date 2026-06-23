@@ -17,7 +17,7 @@ export function Skills() {
 
   return (
     <section id="skills" className="relative section bg-bg overflow-hidden">
-      <TechBackground variant="network" opacity={0.6} networkDensity={32} />
+      <TechBackground variant="network" lava="subtle" opacity={0.6} networkDensity={32} />
       <div className="relative z-10 max-site">
         <ScrollReveal>
           <SectionHeader label="Expertise" title="Technical expertise" />

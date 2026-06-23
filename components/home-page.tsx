@@ -24,13 +24,19 @@ const ScrollRobot = dynamic(
   { ssr: false }
 );
 
+const LavaVeins = dynamic(
+  () => import("@/components/motion/lava-veins").then((m) => m.LavaVeins),
+  { ssr: false }
+);
+
 export function HomePage() {
   return (
     <>
       <CursorGlow />
       <ScrollRobot />
       <Nav />
-      <main>
+      <main className="relative">
+        <LavaVeins />
         <Hero />
         <About />
         <Impact />

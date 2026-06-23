@@ -16,11 +16,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-const ParticleField = dynamic(
-  () => import("@/components/motion/particle-field").then((m) => m.ParticleField),
-  { ssr: false }
-);
-
 const LavaFlow = dynamic(
   () => import("@/components/motion/lava-flow").then((m) => m.LavaFlow),
   { ssr: false }
@@ -51,7 +46,8 @@ function Tag({
         secondary
           ? "border-border/60 bg-surface/30 text-muted/80 text-[11px] md:text-xs"
           : "border-border bg-surface/50 text-muted",
-        active && "hero-tag-active border-accent/60 text-accent shadow-[0_0_20px_rgba(139,124,255,0.35)] scale-105"
+        active &&
+          "hero-tag-active border-accent/60 text-accent shadow-[0_0_20px_rgba(139,124,255,0.35)] scale-105"
       )}
     >
       {children}
@@ -63,9 +59,8 @@ function HeroContent() {
   return (
     <>
       <LavaFlow intensity="hero" />
-      <TechBackground variant="mesh" opacity={0.5} />
+      <TechBackground variant="mesh" opacity={0.45} />
       <HeroMindMaps />
-      <ParticleField opacity={0.5} />
 
       <div className="relative z-10 max-site section w-full flex flex-col items-center text-center">
         <motion.div
@@ -74,7 +69,7 @@ function HeroContent() {
           animate="visible"
           className="max-w-3xl"
         >
-          <h1 className="display-name text-[clamp(3rem,12vw,6rem)] text-foreground">
+          <h1 className="hero-name-shimmer display-name text-[clamp(3rem,12vw,6rem)] text-foreground">
             {nameParts.map((part, i) => (
               <motion.span
                 key={part}
@@ -136,10 +131,10 @@ function HeroContent() {
       <button
         type="button"
         onClick={() => scrollToSection("about")}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 text-muted hover:text-accent transition"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 text-muted hover:text-accent transition max-md:bottom-4"
         aria-label="Scroll to about"
       >
-        <span className="text-xs">Scroll</span>
+        <span className="text-xs max-md:hidden">Scroll</span>
         <ChevronDown className="h-4 w-4 animate-bounce" />
       </button>
     </>

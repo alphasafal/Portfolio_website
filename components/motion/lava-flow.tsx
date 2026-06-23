@@ -18,19 +18,28 @@ const CONFIG: Record<
   LavaIntensity,
   { count: number; speed: number; opacity: number; warmRatio: number }
 > = {
-  subtle: { count: 3, speed: 0.35, opacity: 0.12, warmRatio: 0 },
-  highlight: { count: 4, speed: 0.55, opacity: 0.18, warmRatio: 0.25 },
-  hero: { count: 6, speed: 0.75, opacity: 0.25, warmRatio: 0.35 },
+  subtle: { count: 3, speed: 0.35, opacity: 0.15, warmRatio: 0 },
+  highlight: { count: 5, speed: 0.55, opacity: 0.22, warmRatio: 0.3 },
+  hero: { count: 7, speed: 0.85, opacity: 0.3, warmRatio: 0.4 },
 };
 
+function blobCount(intensity: LavaIntensity) {
+  const mobile = typeof window !== "undefined" && window.innerWidth < 768;
+  const base = CONFIG[intensity].count;
+  if (mobile && intensity === "hero") return 4;
+  if (mobile && intensity === "highlight") return 3;
+  return base;
+}
+
 function makeBlobs(w: number, h: number, intensity: LavaIntensity): Blob[] {
-  const { count, speed, warmRatio } = CONFIG[intensity];
+  const { speed, warmRatio } = CONFIG[intensity];
+  const count = blobCount(intensity);
   return Array.from({ length: count }, (_, i) => ({
     x: Math.random() * w,
     y: Math.random() * h,
     vx: (Math.random() - 0.5) * speed,
     vy: (Math.random() - 0.5) * speed,
-    radius: 80 + Math.random() * (intensity === "hero" ? 120 : 80),
+    radius: 80 + Math.random() * (intensity === "hero" ? 130 : 80),
     hue: Math.random() < warmRatio || i % 3 === 0 ? "warm" : "purple",
   }));
 }
@@ -43,12 +52,12 @@ function drawBlob(
 ) {
   const g = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, b.radius * surge);
   if (b.hue === "warm") {
-    g.addColorStop(0, `rgba(255, 107, 53, ${opacity * 0.9})`);
-    g.addColorStop(0.45, `rgba(255, 80, 40, ${opacity * 0.35})`);
+    g.addColorStop(0, `rgba(255, 107, 53, ${opacity * 0.95})`);
+    g.addColorStop(0.4, `rgba(255, 80, 40, ${opacity * 0.45})`);
     g.addColorStop(1, "rgba(255, 60, 30, 0)");
   } else {
     g.addColorStop(0, `rgba(139, 124, 255, ${opacity})`);
-    g.addColorStop(0.5, `rgba(99, 102, 241, ${opacity * 0.4})`);
+    g.addColorStop(0.45, `rgba(99, 102, 241, ${opacity * 0.5})`);
     g.addColorStop(1, "rgba(139, 124, 255, 0)");
   }
   ctx.fillStyle = g;
@@ -65,6 +74,7 @@ type Props = {
 export function LavaFlow({ intensity = "subtle", className }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const mouse = useRef({ x: -9999, y: -9999 });
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -72,6 +82,7 @@ export function LavaFlow({ intensity = "subtle", className }: Props) {
     if (!canvas || !container) return;
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const isMobile = window.innerWidth < 768;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
@@ -81,6 +92,15 @@ export function LavaFlow({ intensity = "subtle", className }: Props) {
     let visible = true;
     let surge = 1;
     let surgeTarget = 1;
+
+    const onMove = (e: MouseEvent) => {
+      if (intensity !== "hero" || isMobile) return;
+      const rect = container.getBoundingClientRect();
+      mouse.current = {
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+      };
+    };
 
     const resize = () => {
       const w = container.clientWidth;
@@ -102,9 +122,13 @@ export function LavaFlow({ intensity = "subtle", className }: Props) {
     );
     io.observe(container);
 
-    const render = (animate: boolean) => {
+    if (intensity === "hero" && !isMobile) {
+      window.addEventListener("mousemove", onMove, { passive: true });
+    }
+
+    const render = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.globalCompositeOperation = "lighter";
+      ctx.globalCompositeOperation = "screen";
 
       surge += (surgeTarget - surge) * 0.04;
 
@@ -115,66 +139,62 @@ export function LavaFlow({ intensity = "subtle", className }: Props) {
       ctx.globalCompositeOperation = "source-over";
     };
 
+    const applyCursorBias = (b: Blob) => {
+      if (intensity !== "hero" || isMobile) return;
+      const dx = mouse.current.x - b.x;
+      const dy = mouse.current.y - b.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 220 && dist > 0) {
+        const force = (1 - dist / 220) * 0.04;
+        b.vx += (dx / dist) * force;
+        b.vy += (dy / dist) * force;
+      }
+      b.vx *= 0.985;
+      b.vy *= 0.985;
+    };
+
+    const stepBlobs = () => {
+      for (const b of blobs) {
+        applyCursorBias(b);
+        b.x += b.vx;
+        b.y += b.vy;
+        if (b.x < -b.radius) b.x = canvas.width + b.radius;
+        if (b.x > canvas.width + b.radius) b.x = -b.radius;
+        if (b.y < -b.radius) b.y = canvas.height + b.radius;
+        if (b.y > canvas.height + b.radius) b.y = -b.radius;
+      }
+    };
+
     if (reduced) {
       resize();
-      render(false);
+      render();
       return () => {
         ro.disconnect();
         io.disconnect();
+        window.removeEventListener("mousemove", onMove);
       };
     }
 
+    let highlightIo: IntersectionObserver | undefined;
     if (intensity === "highlight") {
-      const onEnter = () => {
-        surgeTarget = 1.2;
-        setTimeout(() => {
-          surgeTarget = 1;
-        }, 800);
-      };
-      const highlightIo = new IntersectionObserver(
+      highlightIo = new IntersectionObserver(
         ([entry]) => {
-          if (entry.isIntersecting) onEnter();
+          if (entry.isIntersecting) {
+            surgeTarget = 1.25;
+            setTimeout(() => {
+              surgeTarget = 1;
+            }, 900);
+          }
         },
         { threshold: 0.3 }
       );
       highlightIo.observe(container);
-
-      const tick = () => {
-        if (visible) {
-          for (const b of blobs) {
-            b.x += b.vx;
-            b.y += b.vy;
-            if (b.x < -b.radius) b.x = canvas.width + b.radius;
-            if (b.x > canvas.width + b.radius) b.x = -b.radius;
-            if (b.y < -b.radius) b.y = canvas.height + b.radius;
-            if (b.y > canvas.height + b.radius) b.y = -b.radius;
-          }
-          render(true);
-        }
-        raf = requestAnimationFrame(tick);
-      };
-
-      raf = requestAnimationFrame(tick);
-
-      return () => {
-        cancelAnimationFrame(raf);
-        ro.disconnect();
-        io.disconnect();
-        highlightIo.disconnect();
-      };
     }
 
     const tick = () => {
       if (visible) {
-        for (const b of blobs) {
-          b.x += b.vx;
-          b.y += b.vy;
-          if (b.x < -b.radius) b.x = canvas.width + b.radius;
-          if (b.x > canvas.width + b.radius) b.x = -b.radius;
-          if (b.y < -b.radius) b.y = canvas.height + b.radius;
-          if (b.y > canvas.height + b.radius) b.y = -b.radius;
-        }
-        render(true);
+        stepBlobs();
+        render();
       }
       raf = requestAnimationFrame(tick);
     };
@@ -185,6 +205,8 @@ export function LavaFlow({ intensity = "subtle", className }: Props) {
       cancelAnimationFrame(raf);
       ro.disconnect();
       io.disconnect();
+      highlightIo?.disconnect();
+      window.removeEventListener("mousemove", onMove);
     };
   }, [intensity]);
 

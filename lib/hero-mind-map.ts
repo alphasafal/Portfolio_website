@@ -104,3 +104,18 @@ export const CORNER_POSITION: Record<MindMapCorner, string> = {
   "bottom-left": "bottom-20 left-4 md:bottom-24 md:left-8",
   "bottom-right": "bottom-20 right-4 md:bottom-24 md:right-8",
 };
+
+export const MOBILE_MIND_MAP_DOCK = HERO_MIND_MAPS.map((m) => ({
+  label: m.nodes.find((n) => n.isHub)?.label ?? m.hubId,
+  shortLabel:
+    m.corner === "top-left"
+      ? "AI"
+      : m.corner === "top-right"
+        ? "Mfg"
+        : m.corner === "bottom-left"
+          ? "Auto"
+          : "Build",
+  scrollTarget: m.scrollTarget,
+  highlightTags: m.highlightTags,
+  tooltip: m.tooltip,
+}));

@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { scrollToSection } from "@/lib/scroll";
 import {
   CORNER_POSITION,
   HERO_MIND_MAPS,
+  MOBILE_MIND_MAP_DOCK,
   type MindMapConfig,
   type MindMapNode,
 } from "@/lib/hero-mind-map";
@@ -29,7 +30,7 @@ function MindMapCorner({ config }: { config: MindMapConfig }) {
     highlight?.clearHighlight();
   }
 
-  function onNodeClick(node: MindMapNode) {
+  function onNodeClick() {
     scrollToSection(config.scrollTarget);
     highlight?.highlight(config.highlightTags);
     setTimeout(() => highlight?.clearHighlight(), 1200);
@@ -68,7 +69,10 @@ function MindMapCorner({ config }: { config: MindMapConfig }) {
           const from = getNode(config.nodes, edge.from);
           const to = getNode(config.nodes, edge.to);
           if (!from || !to) return null;
-          const lit = hovered === edge.from || hovered === edge.to || hovered === config.hubId;
+          const lit =
+            hovered === edge.from ||
+            hovered === edge.to ||
+            hovered === config.hubId;
           return (
             <line
               key={`${edge.from}-${edge.to}`}
@@ -76,14 +80,18 @@ function MindMapCorner({ config }: { config: MindMapConfig }) {
               y1={from.y}
               x2={to.x}
               y2={to.y}
-              className={cn("hero-mind-map-edge", lit && "hero-mind-map-edge-active")}
+              className={cn(
+                "hero-mind-map-edge",
+                lit && "hero-mind-map-edge-active",
+                !lit && "hero-mind-map-edge-idle"
+              )}
             />
           );
         })}
 
         {config.nodes.map((node) => {
           const isHub = node.isHub;
-          const lit = hovered === node.id || (hovered && node.isHub);
+          const lit = hovered === node.id;
           return (
             <g key={node.id}>
               {isHub && (
@@ -112,7 +120,7 @@ function MindMapCorner({ config }: { config: MindMapConfig }) {
                     onEnter();
                   }}
                   onBlur={onLeave}
-                  onClick={() => onNodeClick(node)}
+                  onClick={onNodeClick}
                   aria-label={`${node.label} — ${config.tooltip}`}
                   className={cn(
                     "hero-mind-map-node",
@@ -131,12 +139,37 @@ function MindMapCorner({ config }: { config: MindMapConfig }) {
   );
 }
 
+function MobileMindMapDock() {
+  const highlight = useHeroTagHighlightOptional();
+
+  return (
+    <div className="hero-mind-map-dock absolute bottom-16 left-1/2 z-[2] flex -translate-x-1/2 gap-2 md:hidden">
+      {MOBILE_MIND_MAP_DOCK.map((item) => (
+        <button
+          key={item.shortLabel}
+          type="button"
+          onClick={() => {
+            scrollToSection(item.scrollTarget);
+            highlight?.highlight(item.highlightTags);
+            setTimeout(() => highlight?.clearHighlight(), 1200);
+          }}
+          aria-label={`${item.tooltip} — go to section`}
+          className="hero-mind-map-dock-btn"
+        >
+          {item.shortLabel}
+        </button>
+      ))}
+    </div>
+  );
+}
+
 export function HeroMindMaps() {
   return (
     <>
       {HERO_MIND_MAPS.map((config) => (
         <MindMapCorner key={config.corner} config={config} />
       ))}
+      <MobileMindMapDock />
     </>
   );
 }
