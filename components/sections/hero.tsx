@@ -7,7 +7,7 @@ import { SITE } from "@/lib/constants";
 import { fadeUp, spring, staggerContainer } from "@/lib/motion";
 import { scrollToSection } from "@/lib/scroll";
 import { MagneticButton } from "@/components/motion/magnetic-button";
-import { FlameButton } from "@/components/motion/flame-button";
+import { AuroraButton } from "@/components/motion/aurora-button";
 import { RotatingText } from "@/components/motion/rotating-text";
 import { TechBackground } from "@/components/motion/tech-background";
 import {
@@ -17,8 +17,18 @@ import {
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-const LavaFlow = dynamic(
-  () => import("@/components/motion/lava-flow").then((m) => m.LavaFlow),
+const AuroraFlow = dynamic(
+  () => import("@/components/motion/aurora-flow").then((m) => m.AuroraFlow),
+  { ssr: false }
+);
+
+const AuroraBeam = dynamic(
+  () => import("@/components/motion/aurora-beam").then((m) => m.AuroraBeam),
+  { ssr: false }
+);
+
+const HeroSpotlight = dynamic(
+  () => import("@/components/motion/hero-spotlight").then((m) => m.HeroSpotlight),
   { ssr: false }
 );
 
@@ -59,8 +69,10 @@ function Tag({
 function HeroContent() {
   return (
     <>
-      <LavaFlow intensity="hero" />
-      <TechBackground variant="mesh" opacity={0.45} />
+      <AuroraBeam />
+      <AuroraFlow intensity="hero" />
+      <TechBackground variant="mesh" opacity={0.35} />
+      <HeroSpotlight />
       <HeroMindMaps />
 
       <div className="relative z-10 max-site section w-full flex flex-col items-center text-center">
@@ -121,9 +133,9 @@ function HeroContent() {
               </Button>
             </MagneticButton>
             <MagneticButton>
-              <FlameButton size="lg" onClick={() => scrollToSection("contact")}>
+              <AuroraButton size="lg" onClick={() => scrollToSection("contact")}>
                 Get In Touch
-              </FlameButton>
+              </AuroraButton>
             </MagneticButton>
           </motion.div>
         </motion.div>

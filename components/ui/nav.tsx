@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { SITE, MAIN_NAV, EXTENDED_NAV } from "@/lib/constants";
 import { scrollToSection } from "@/lib/scroll";
-import { FlameButton } from "@/components/motion/flame-button";
+import { AuroraButton } from "@/components/motion/aurora-button";
 import { cn } from "@/lib/utils";
 
 const ALL_NAV = [...MAIN_NAV, ...EXTENDED_NAV];
@@ -56,9 +56,9 @@ export function Nav() {
           >
             Résumé
           </a>
-          <FlameButton size="sm" onClick={() => go("contact")}>
+          <AuroraButton size="sm" onClick={() => go("contact")}>
             Get In Touch
-          </FlameButton>
+          </AuroraButton>
         </div>
 
         <button
@@ -83,9 +83,9 @@ export function Nav() {
             </button>
           ))}
           <div className="pt-2 mt-2 border-t border-border">
-            <FlameButton className="w-full" size="sm" onClick={() => go("contact")}>
+            <AuroraButton className="w-full" size="sm" onClick={() => go("contact")}>
               Get In Touch
-            </FlameButton>
+            </AuroraButton>
           </div>
           <a
             href="/resume-safal-gupta.pdf"
