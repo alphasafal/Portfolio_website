@@ -5,6 +5,7 @@ import { CursorGlow } from "@/components/motion/cursor-glow";
 import { Nav } from "@/components/ui/nav";
 import { Hero } from "@/components/sections/hero";
 import { About } from "@/components/sections/about";
+import { ManufacturingMetaBrain } from "@/components/sections/manufacturing-metabrain";
 import { Impact } from "@/components/sections/impact";
 import { Projects } from "@/components/sections/projects";
 import { ProjectDemoShowcase } from "@/components/sections/project-demo-showcase";
@@ -40,6 +41,7 @@ export function HomePage() {
         <LavaVeins />
         <Hero />
         <About />
+        <ManufacturingMetaBrain />
         <Impact />
         <Projects />
         <ProjectDemoShowcase />

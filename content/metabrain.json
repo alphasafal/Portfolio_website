@@ -1,0 +1,50 @@
+{
+  "label": "Platform",
+  "title": "Factory MetaBrain",
+  "description": "Huly brings your teams, knowledge, and AI-powered workflows together. I build the same connected layer for manufacturing — automation, planning, and real-time ops in one system.",
+  "tiles": [
+    {
+      "id": "automate",
+      "label": "Automate workflows.",
+      "image": "/metabrain/metabrain-automate.png",
+      "grid": "tasks"
+    },
+    {
+      "id": "plan",
+      "label": "Plan production.",
+      "image": "/metabrain/metabrain-plan.png",
+      "grid": "plan"
+    },
+    {
+      "id": "hub",
+      "label": "Live Ops",
+      "image": "/metabrain/metabrain-hub.png",
+      "grid": "hub",
+      "circular": true
+    },
+    {
+      "id": "chat",
+      "label": "Chat with teams.",
+      "image": "/metabrain/metabrain-chat.png",
+      "grid": "chat"
+    },
+    {
+      "id": "docs",
+      "label": "Capture SOPs.",
+      "image": "/metabrain/metabrain-docs.png",
+      "grid": "notes"
+    },
+    {
+      "id": "sync",
+      "label": "Sync in real time.",
+      "image": "/metabrain/metabrain-sync.png",
+      "grid": "sync"
+    },
+    {
+      "id": "manage",
+      "label": "Manage projects.",
+      "image": "/metabrain/metabrain-manage.png",
+      "grid": "manage"
+    }
+  ]
+}
