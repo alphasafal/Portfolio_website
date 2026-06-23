@@ -278,6 +278,10 @@ body {
   width: 100%;
 }
 
+.hero-name-block {
+  max-width: 100%;
+}
+
 .hero-spline-slot {
   width: min(72vw, 220px);
   height: min(72vw, 220px);

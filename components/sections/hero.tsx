@@ -69,8 +69,8 @@ function HeroContent() {
           animate="visible"
           className="w-full max-w-5xl"
         >
-          <div className="flex flex-col items-center">
-            <div className="hero-name-row flex flex-col items-center justify-center gap-6 sm:gap-4 lg:flex-row lg:items-center lg:justify-center lg:gap-6 xl:gap-10">
+          <div className="hero-name-row flex flex-col items-center justify-center gap-6 sm:gap-5 lg:flex-row lg:items-center lg:justify-center lg:gap-6 xl:gap-10">
+            <div className="hero-name-block flex flex-col items-center lg:items-start text-center lg:text-left">
               <h1 className="hero-name-shimmer display-name text-[clamp(3rem,12vw,6rem)] text-foreground shrink-0">
                 {nameParts.map((part, i) => (
                   <motion.span
@@ -83,23 +83,22 @@ function HeroContent() {
                   </motion.span>
                 ))}
               </h1>
-              <motion.div
+              <motion.p
                 variants={fadeUp}
-                transition={{ ...spring, delay: 0.35 }}
-                className="hero-spline-slot shrink-0"
+                transition={{ ...spring, delay: 0.32 }}
+                className="hero-motto mt-3 md:mt-4 text-base md:text-lg font-light italic tracking-wide text-accent/90 min-h-[1.75rem]"
+                aria-live="polite"
               >
-                <HeroSplineRobot />
-              </motion.div>
+                <RotatingText messages={SITE.heroMotto} intervalMs={3200} />
+              </motion.p>
             </div>
-
-            <motion.p
+            <motion.div
               variants={fadeUp}
-              transition={{ ...spring, delay: 0.42 }}
-              className="hero-motto mt-4 md:mt-5 text-base md:text-lg font-light italic tracking-wide text-accent/90 min-h-[1.75rem] flex items-center justify-center"
-              aria-live="polite"
+              transition={{ ...spring, delay: 0.35 }}
+              className="hero-spline-slot shrink-0"
             >
-              <RotatingText messages={SITE.heroMotto} intervalMs={3200} />
-            </motion.p>
+              <HeroSplineRobot />
+            </motion.div>
           </div>
 
           <motion.p
