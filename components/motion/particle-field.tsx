@@ -4,7 +4,9 @@ import { useEffect, useRef } from "react";
 
 type Particle = { x: number; y: number; vx: number; vy: number; size: number };
 
-export function ParticleField() {
+type Props = { opacity?: number };
+
+export function ParticleField({ opacity = 0.6 }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mouse = useRef({ x: 0, y: 0 });
 
@@ -95,7 +97,8 @@ export function ParticleField() {
   return (
     <canvas
       ref={canvasRef}
-      className="pointer-events-none absolute inset-0 z-0 opacity-60"
+      className="pointer-events-none absolute inset-0 z-0"
+      style={{ opacity }}
       aria-hidden
     />
   );

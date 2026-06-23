@@ -8,7 +8,13 @@ const NeuralNetworkBg = dynamic(
   { ssr: false }
 );
 
+const LavaFlow = dynamic(
+  () => import("@/components/motion/lava-flow").then((m) => m.LavaFlow),
+  { ssr: false }
+);
+
 export type TechBgVariant = "grid" | "network" | "mesh" | "scan" | "circuit";
+export type LavaIntensity = "subtle" | "hero" | "highlight";
 
 type Props = {
   variant: TechBgVariant;
@@ -16,6 +22,7 @@ type Props = {
   /** 0–1 */
   opacity?: number;
   networkDensity?: number;
+  lava?: LavaIntensity;
 };
 
 function GridLayer() {
@@ -56,6 +63,7 @@ export function TechBackground({
   className,
   opacity = 1,
   networkDensity = 28,
+  lava,
 }: Props) {
   return (
     <div
@@ -63,6 +71,7 @@ export function TechBackground({
       style={{ opacity }}
       aria-hidden
     >
+      {lava && <LavaFlow intensity={lava} />}
       {variant === "grid" && <GridLayer />}
       {variant === "mesh" && <MeshLayer />}
       {variant === "scan" && <ScanLayer />}

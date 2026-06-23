@@ -7,7 +7,7 @@ import impact from "@/content/impact.json";
 export function Impact() {
   return (
     <section id="impact" className="relative section bg-bg overflow-hidden">
-      <TechBackground variant="grid" opacity={0.85} />
+      <TechBackground variant="grid" lava="subtle" opacity={0.85} />
       <div className="relative z-10 max-site">
         <ScrollReveal>
           <SectionHeader label="Impact" title="Impact dashboard" />

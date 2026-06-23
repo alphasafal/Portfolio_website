@@ -43,7 +43,7 @@ export function ManufacturingVision() {
 
   return (
     <section id="vision" className="relative section bg-bg overflow-hidden">
-      <TechBackground variant="circuit" opacity={0.9} />
+      <TechBackground variant="circuit" lava="highlight" opacity={0.9} />
       <div className="relative z-10 max-site">
         <ScrollReveal>
           <SectionHeader label="Vision" title={vision.heading} />

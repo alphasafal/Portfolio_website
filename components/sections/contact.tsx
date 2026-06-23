@@ -43,7 +43,7 @@ export function Contact() {
 
   return (
     <section id="contact" className="relative section bg-bg overflow-hidden">
-      <TechBackground variant="mesh" opacity={0.35} />
+      <TechBackground variant="mesh" lava="subtle" opacity={0.35} />
       <div className="relative z-10 max-site max-w-xl mx-auto">
         <ScrollReveal>
           <SectionHeader label="Contact" title="Let's Build Something Exceptional" />

@@ -12,7 +12,7 @@ export function Projects() {
 
   return (
     <section id="projects" className="relative section bg-bg overflow-hidden">
-      <TechBackground variant="mesh" opacity={0.5} />
+      <TechBackground variant="mesh" lava="highlight" opacity={0.5} />
       <div className="relative z-10 max-site">
         <ScrollReveal>
           <SectionHeader

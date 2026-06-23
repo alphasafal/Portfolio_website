@@ -4,12 +4,14 @@ import Image from "next/image";
 import { SITE } from "@/lib/constants";
 import { ART, PORTRAIT_SIZES } from "@/lib/art-images";
 import { ScrollReveal } from "@/components/motion/scroll-reveal";
+import { TechBackground } from "@/components/motion/tech-background";
 import { SectionHeader } from "@/components/ui/section-header";
 
 export function About() {
   return (
-    <section id="about" className="section bg-bg">
-      <div className="max-site">
+    <section id="about" className="relative section bg-bg overflow-hidden">
+      <TechBackground variant="grid" lava="subtle" opacity={0.45} />
+      <div className="relative z-10 max-site">
         <ScrollReveal>
           <SectionHeader label="About" title="Engineering the Next Industrial Revolution" />
         </ScrollReveal>

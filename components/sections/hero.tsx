@@ -9,6 +9,10 @@ import { scrollToSection } from "@/lib/scroll";
 import { MagneticButton } from "@/components/motion/magnetic-button";
 import { RotatingText } from "@/components/motion/rotating-text";
 import { TechBackground } from "@/components/motion/tech-background";
+import {
+  HeroTagHighlightProvider,
+  useHeroTagHighlightOptional,
+} from "@/components/motion/hero-tag-highlight";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -17,16 +21,37 @@ const ParticleField = dynamic(
   { ssr: false }
 );
 
+const LavaFlow = dynamic(
+  () => import("@/components/motion/lava-flow").then((m) => m.LavaFlow),
+  { ssr: false }
+);
+
+const HeroMindMaps = dynamic(
+  () => import("@/components/motion/hero-mind-maps").then((m) => m.HeroMindMaps),
+  { ssr: false }
+);
+
 const nameParts = SITE.name.split(" ");
 
-function Tag({ children, secondary = false }: { children: string; secondary?: boolean }) {
+function Tag({
+  children,
+  secondary = false,
+}: {
+  children: string;
+  secondary?: boolean;
+}) {
+  const highlight = useHeroTagHighlightOptional();
+  const active = highlight?.activeTags.includes(children) ?? false;
+
   return (
     <span
+      data-tag={children}
       className={cn(
-        "rounded-full border px-4 py-1.5 text-xs md:text-sm",
+        "rounded-full border px-4 py-1.5 text-xs md:text-sm transition-all duration-300",
         secondary
           ? "border-border/60 bg-surface/30 text-muted/80 text-[11px] md:text-xs"
-          : "border-border bg-surface/50 text-muted"
+          : "border-border bg-surface/50 text-muted",
+        active && "hero-tag-active border-accent/60 text-accent shadow-[0_0_20px_rgba(139,124,255,0.35)] scale-105"
       )}
     >
       {children}
@@ -34,14 +59,13 @@ function Tag({ children, secondary = false }: { children: string; secondary?: bo
   );
 }
 
-export function Hero() {
+function HeroContent() {
   return (
-    <section
-      id="hero"
-      className="relative flex min-h-screen flex-col items-center justify-center bg-bg overflow-hidden"
-    >
-      <TechBackground variant="mesh" opacity={0.7} />
-      <ParticleField />
+    <>
+      <LavaFlow intensity="hero" />
+      <TechBackground variant="mesh" opacity={0.5} />
+      <HeroMindMaps />
+      <ParticleField opacity={0.5} />
 
       <div className="relative z-10 max-site section w-full flex flex-col items-center text-center">
         <motion.div
@@ -118,6 +142,19 @@ export function Hero() {
         <span className="text-xs">Scroll</span>
         <ChevronDown className="h-4 w-4 animate-bounce" />
       </button>
+    </>
+  );
+}
+
+export function Hero() {
+  return (
+    <section
+      id="hero"
+      className="relative flex min-h-screen flex-col items-center justify-center bg-bg overflow-hidden"
+    >
+      <HeroTagHighlightProvider>
+        <HeroContent />
+      </HeroTagHighlightProvider>
     </section>
   );
 }
