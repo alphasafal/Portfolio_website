@@ -227,6 +227,21 @@ body {
   .lava-flow-hero {
     opacity: 0.6;
   }
+
+  .glow-card-beam-on::before {
+    animation: none !important;
+    opacity: 0.35 !important;
+  }
+
+  .glow-card:hover.glow-card-beam-on::before,
+  .glow-card:focus-within.glow-card-beam-on::before,
+  .glow-card-active.glow-card-beam-on::before {
+    opacity: 0.6 !important;
+  }
+
+  .glow-card-tint-on::after {
+    display: none !important;
+  }
 }
 
 /* ── Lava flow ── */
@@ -269,6 +284,110 @@ body {
 @keyframes hero-shimmer {
   0%, 100% { background-position: 100% center; }
   50% { background-position: 0% center; }
+}
+
+/* ── Glow card: cursor tint + border beam ── */
+
+@property --beam-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.glow-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  --glow-x: 50%;
+  --glow-y: 50%;
+  --beam-angle: 0deg;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: border-color 0.35s ease;
+}
+
+.glow-card:hover,
+.glow-card:focus-within,
+.glow-card-active {
+  border-color: rgba(139, 124, 255, 0.45);
+}
+
+.glow-card-beam-on::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--beam-angle),
+    transparent 0deg,
+    rgba(139, 124, 255, 0.9) 60deg,
+    rgba(255, 107, 53, 0.85) 120deg,
+    transparent 200deg
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.2;
+  animation: border-beam-spin 3.5s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.glow-card:hover.glow-card-beam-on::before,
+.glow-card:focus-within.glow-card-beam-on::before,
+.glow-card-active.glow-card-beam-on::before {
+  opacity: 1;
+}
+
+.glow-card-tint-on::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    280px circle at var(--glow-x) var(--glow-y),
+    rgba(139, 124, 255, 0.14) 0%,
+    rgba(255, 107, 53, 0.08) 35%,
+    transparent 65%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.glow-card:hover.glow-card-tint-on::after,
+.glow-card:focus-within.glow-card-tint-on::after,
+.glow-card-active.glow-card-tint-on::after {
+  opacity: 1;
+}
+
+.glow-card-inner {
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes border-beam-spin {
+  to {
+    --beam-angle: 360deg;
+  }
+}
+
+@media (pointer: coarse) {
+  .glow-card-beam-on::before {
+    opacity: 0.25;
+    animation-duration: 5s;
+  }
+
+  .glow-card-tint-on::after {
+    display: none;
+  }
+
+  .glow-card:active {
+    border-color: rgba(139, 124, 255, 0.55);
+  }
 }
 
 /* ── Hero mind maps ── */

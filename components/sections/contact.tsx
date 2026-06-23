@@ -8,6 +8,7 @@ import { ScrollReveal } from "@/components/motion/scroll-reveal";
 import { TechBackground } from "@/components/motion/tech-background";
 import { SectionHeader } from "@/components/ui/section-header";
 import { MagneticButton } from "@/components/motion/magnetic-button";
+import { GlowCard } from "@/components/motion/glow-card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -80,7 +81,8 @@ export function Contact() {
             )}
           </div>
 
-          <form onSubmit={handleSubmit} className="glass rounded-2xl p-8 space-y-4">
+          <GlowCard className="p-8">
+            <form onSubmit={handleSubmit} className="space-y-4">
             <input
               type="text"
               name="_gotcha"
@@ -122,7 +124,8 @@ export function Contact() {
                 </motion.p>
               )}
             </AnimatePresence>
-          </form>
+            </form>
+          </GlowCard>
         </ScrollReveal>
       </div>
     </section>
