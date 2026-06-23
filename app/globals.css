@@ -309,12 +309,34 @@ body {
   overflow: hidden;
   border-radius: 1.25rem;
   pointer-events: auto;
+  background: transparent;
 }
 
-.hero-spline-robot-canvas,
+/* Crop Spline logo padding — scale up and clip edges; watermark only on my.spline embed */
+.hero-spline-robot-viewport {
+  position: absolute;
+  inset: -8% -12% -14% -12%;
+  overflow: hidden;
+}
+
+.hero-spline-robot-canvas {
+  width: 100% !important;
+  height: 100% !important;
+  transform: scale(1.22);
+  transform-origin: 50% 42%;
+}
+
+.hero-spline-robot-canvas canvas,
 .hero-spline-robot canvas {
   width: 100% !important;
   height: 100% !important;
+}
+
+/* Hide any injected Spline branding links */
+.hero-spline-robot a[href*="spline.design"],
+.hero-spline-robot .spline-watermark {
+  display: none !important;
+  pointer-events: none !important;
 }
 
 .hero-spline-robot-shimmer {

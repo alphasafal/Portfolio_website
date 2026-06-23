@@ -14,14 +14,19 @@ export function HeroSplineRobot({ className }: Props) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const [ready, setReady] = useState(false);
 
-  const onLoad = useCallback(() => {
+  const onLoad = useCallback((app: Application) => {
     setReady(true);
+    // Tighten framing on the robot (crop empty canvas / logo padding)
+    try {
+      app.setZoom(1.35);
+    } catch {
+      /* zoom API optional per scene */
+    }
   }, []);
 
   const forwardPointer = useCallback((clientX: number, clientY: number) => {
     const canvas = wrapRef.current?.querySelector("canvas");
     if (!canvas) return;
-    const rect = canvas.getBoundingClientRect();
     canvas.dispatchEvent(
       new MouseEvent("mousemove", {
         clientX,
@@ -50,11 +55,13 @@ export function HeroSplineRobot({ className }: Props) {
       aria-hidden
     >
       {!ready && <div className="hero-spline-robot-shimmer" />}
-      <Spline
-        scene={SPLINE_HERO_SCENE}
-        onLoad={(_app: Application) => onLoad()}
-        className="hero-spline-robot-canvas"
-      />
+      <div className="hero-spline-robot-viewport">
+        <Spline
+          scene={SPLINE_HERO_SCENE}
+          onLoad={onLoad}
+          className="hero-spline-robot-canvas"
+        />
+      </div>
     </div>
   );
 }
