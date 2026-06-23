@@ -1,0 +1,24 @@
+{
+  "ideas": [
+    {
+      "title": "Predictive Maintenance AI",
+      "description": "ML models that predict equipment failures before they halt production lines."
+    },
+    {
+      "title": "Digital Twin Platform",
+      "description": "Real-time digital replicas of factory floors for simulation and optimization."
+    },
+    {
+      "title": "Autonomous Quality Inspection",
+      "description": "Computer vision systems that detect defects faster than human inspectors."
+    },
+    {
+      "title": "Supply Chain Intelligence",
+      "description": "AI-driven demand forecasting and supplier risk monitoring for manufacturers."
+    },
+    {
+      "title": "Operator Knowledge Graph",
+      "description": "Connected knowledge base that captures tribal manufacturing expertise."
+    }
+  ]
+}

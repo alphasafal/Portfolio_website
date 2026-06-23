@@ -1,0 +1,18 @@
+{
+  "items": [
+    {
+      "id": "web3",
+      "title": "Web3",
+      "subtitle": "Exploring",
+      "description": "Learning decentralized systems, smart contract patterns, and how on-chain infrastructure can complement real-world products.",
+      "topics": ["Solidity basics", "DeFi concepts", "On-chain data"]
+    },
+    {
+      "id": "quant",
+      "title": "Quant",
+      "subtitle": "Exploring",
+      "description": "Interested in data-driven models, statistical thinking, and building systems that turn numbers into decisions.",
+      "topics": ["Python analytics", "ML models", "Backtesting ideas"]
+    }
+  ]
+}

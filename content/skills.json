@@ -1,0 +1,24 @@
+{
+  "categories": [
+    {
+      "id": "software",
+      "name": "Software Engineering",
+      "skills": ["C++", "Python", "JavaScript", "TypeScript"]
+    },
+    {
+      "id": "ai",
+      "name": "AI & Data",
+      "skills": ["Machine Learning", "LLM Applications", "Prompt Engineering", "Vector Databases"]
+    },
+    {
+      "id": "enterprise",
+      "name": "Enterprise Solutions",
+      "skills": ["Power Apps", "Power Automate", "SharePoint", "SAP Integration"]
+    },
+    {
+      "id": "cloud",
+      "name": "Cloud & DevOps",
+      "skills": ["Docker", "Git", "Azure", "AWS"]
+    }
+  ]
+}

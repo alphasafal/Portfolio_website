@@ -1,0 +1,58 @@
+[
+  {
+    "slug": "jcb-digitalization",
+    "title": "JCB Industrial Digitalization",
+    "description": "Manufacturing digital transformation — process automation and Power Platform solutions at JCB India.",
+    "problem": "Manual manufacturing workflows slowed equipment handovers, approvals, and cross-team coordination on the shop floor.",
+    "solution": "Designed and deployed Power Apps interfaces, Power Automate flows, and SharePoint integrations to digitize handover and approval processes.",
+    "impact": "Streamlined operational workflows, reduced manual follow-ups, and improved visibility for manufacturing teams.",
+    "stack": ["Power Apps", "Power Automate", "SharePoint", "Microsoft 365", "SAP Integration"],
+    "gradient": "from-emerald-500/20 to-teal-600/20",
+    "image": "/art/cap-fullstack.png",
+    "url": null,
+    "metric": "JCB India · 2026",
+    "flagship": true
+  },
+  {
+    "slug": "equipment-handover",
+    "title": "Equipment Handover System",
+    "description": "Automated approval routing and tracking for manufacturing equipment handovers.",
+    "problem": "Manual approval process causing delays in equipment handover workflows across manufacturing teams.",
+    "solution": "Built a Power Apps + Power Automate workflow that routes approvals, tracks status, and notifies stakeholders in real time.",
+    "impact": "Automated approval routing and tracking — reducing handover cycle time and eliminating manual follow-ups.",
+    "stack": ["Power Apps", "Power Automate", "SharePoint", "Microsoft 365"],
+    "gradient": "from-blue-500/20 to-cyan-600/20",
+    "image": "/art/cap-product.png",
+    "url": null,
+    "metric": "40% faster handovers",
+    "flagship": false
+  },
+  {
+    "slug": "ai-manufacturing-assistant",
+    "title": "AI Manufacturing Assistant",
+    "description": "AI assistant trained on manufacturing knowledge for faster operational insights.",
+    "problem": "Operators spend significant time searching for information across manuals, SOPs, and tribal knowledge.",
+    "solution": "Built an AI assistant with RAG over manufacturing documentation, enabling natural-language queries on the shop floor.",
+    "impact": "Faster access to operational insights — operators get answers in seconds instead of minutes.",
+    "stack": ["Python", "OpenAI", "Vector Databases", "FastAPI", "React"],
+    "gradient": "from-violet-500/20 to-purple-600/20",
+    "image": "/art/cap-ai.png",
+    "url": "https://github.com/alphasafal",
+    "metric": "Sub-second answers",
+    "flagship": false
+  },
+  {
+    "slug": "fraudguard",
+    "title": "FraudGuard",
+    "description": "AI-powered fraud detection with real-time monitoring and risk analysis.",
+    "problem": "Fraud detection systems often miss subtle patterns and react too slowly to emerging threats.",
+    "solution": "Developed an AI-powered fraud detection platform with pattern recognition, anomaly scoring, and real-time alerts.",
+    "impact": "Real-time monitoring and risk analysis — catching suspicious activity before it escalates.",
+    "stack": ["Python", "Machine Learning", "TypeScript", "PostgreSQL", "Docker"],
+    "gradient": "from-amber-500/20 to-orange-600/20",
+    "image": "/art/project-signal.png",
+    "url": "https://github.com/alphasafal",
+    "metric": "Real-time risk alerts",
+    "flagship": false
+  }
+]

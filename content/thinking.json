@@ -1,0 +1,23 @@
+[
+  {
+    "slug": "why-ai-not-around-it",
+    "title": "Why I build with AI, not around it",
+    "date": "2026-03-12",
+    "excerpt": "Integrating models into product loops instead of bolting chatbots onto legacy flows.",
+    "body": "The best AI products don't feel like AI products. They feel like the thing you wanted software to do all along — just faster, smarter, and more adaptive. I focus on tight feedback loops: ship a thin slice, measure latency and quality, iterate on prompts and architecture together."
+  },
+  {
+    "slug": "fullstack-mindset-2026",
+    "title": "The full-stack mindset in 2026",
+    "date": "2026-02-28",
+    "excerpt": "One person, many layers — and why that's a feature, not a limitation.",
+    "body": "Full-stack today means spanning inference, infra, and interface. The leverage is in owning the whole path from user intent to model output. When you see every layer, you make better tradeoffs."
+  },
+  {
+    "slug": "shipping-is-design",
+    "title": "Shipping is a design skill",
+    "date": "2026-01-15",
+    "excerpt": "Velocity vs. craft — and why the best portfolios are built in public.",
+    "body": "Shipping isn't the opposite of quality. It's how you learn what quality means for real users. I optimize for small releases, clear metrics, and honest postmortems."
+  }
+]

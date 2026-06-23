@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" fill="none">
+  <rect width="800" height="400" fill="#09090B"/>
+  <circle cx="400" cy="170" r="90" stroke="#8B7CFF" stroke-opacity="0.3" stroke-width="2"/>
+  <circle cx="400" cy="170" r="60" stroke="#A78BFA" stroke-opacity="0.5" stroke-width="2"/>
+  <circle cx="400" cy="170" r="20" fill="#8B7CFF" fill-opacity="0.8"/>
+  <path d="M200 280c60-80 340-80 400 0" stroke="#8B7CFF" stroke-opacity="0.25"/>
+  <rect x="140" y="100" width="100" height="60" rx="8" fill="#8B7CFF" fill-opacity="0.08" stroke="#8B7CFF" stroke-opacity="0.3"/>
+  <rect x="560" y="100" width="100" height="60" rx="8" fill="#8B7CFF" fill-opacity="0.08" stroke="#8B7CFF" stroke-opacity="0.3"/>
+  <text x="400" y="340" text-anchor="middle" fill="#A1A1AA" font-family="system-ui,sans-serif" font-size="22">AI Manufacturing Assistant</text>
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" fill="none">
+  <rect width="800" height="400" fill="#09090B"/>
+  <rect x="80" y="80" width="280" height="200" rx="16" fill="#3B82F6" fill-opacity="0.1" stroke="#60A5FA" stroke-opacity="0.45"/>
+  <path d="M400 120h280M400 180h220M400 240h260" stroke="#8B7CFF" stroke-opacity="0.35" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="220" cy="180" r="48" stroke="#22D3EE" stroke-width="2" opacity="0.6"/>
+  <path d="M200 180l28 28 56-56" stroke="#22D3EE" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="400" y="340" text-anchor="middle" fill="#A1A1AA" font-family="system-ui,sans-serif" font-size="22">Equipment Handover System</text>
+</svg>

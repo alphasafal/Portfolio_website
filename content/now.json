@@ -1,0 +1,22 @@
+{
+  "items": [
+    {
+      "title": "AI Manufacturing Copilot",
+      "status": "In Progress",
+      "description": "An AI assistant that guides operators through complex manufacturing workflows in real time.",
+      "href": "https://github.com/alphasafal"
+    },
+    {
+      "title": "Factory Workflow Automation Suite",
+      "status": "Research",
+      "description": "End-to-end automation platform for factory floor processes and approvals.",
+      "href": null
+    },
+    {
+      "title": "Industrial Analytics Dashboard",
+      "status": "Prototype",
+      "description": "Real-time visibility into production metrics, downtime, and operational KPIs.",
+      "href": null
+    }
+  ]
+}
