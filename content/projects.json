@@ -11,7 +11,10 @@
     "image": "/art/cap-fullstack.png",
     "url": null,
     "metric": "JCB India · 2026",
-    "flagship": true
+    "flagship": true,
+    "demoVideo": "/demos/jcb-digitalization.mp4",
+    "demoPoster": "/art/cap-fullstack.png",
+    "demoCaption": "Digitizing equipment handovers and approvals at JCB India"
   },
   {
     "slug": "equipment-handover",
@@ -25,7 +28,10 @@
     "image": "/art/cap-product.png",
     "url": null,
     "metric": "40% faster handovers",
-    "flagship": false
+    "flagship": false,
+    "demoVideo": "/demos/equipment-handover.mp4",
+    "demoPoster": "/art/cap-product.png",
+    "demoCaption": "Real-time approval routing for manufacturing handovers"
   },
   {
     "slug": "ai-manufacturing-assistant",
@@ -39,7 +45,10 @@
     "image": "/art/cap-ai.png",
     "url": "https://github.com/alphasafal",
     "metric": "Sub-second answers",
-    "flagship": false
+    "flagship": false,
+    "demoVideo": "/demos/ai-manufacturing-assistant.mp4",
+    "demoPoster": "/art/cap-ai.png",
+    "demoCaption": "Natural-language answers from manufacturing documentation"
   },
   {
     "slug": "fraudguard",
@@ -53,6 +62,9 @@
     "image": "/art/project-signal.png",
     "url": "https://github.com/alphasafal",
     "metric": "Real-time risk alerts",
-    "flagship": false
+    "flagship": false,
+    "demoVideo": "/demos/fraudguard.mp4",
+    "demoPoster": "/art/project-signal.png",
+    "demoCaption": "Real-time fraud detection and risk scoring dashboard"
   }
 ]

@@ -1,86 +1,85 @@
-import { TiltCard } from "@/components/motion/tilt-card";
-import { GlowCard } from "@/components/motion/glow-card";
-import { ScrollReveal } from "@/components/motion/scroll-reveal";
-import { TechBackground } from "@/components/motion/tech-background";
-import { SectionHeader } from "@/components/ui/section-header";
-import { ProjectCover } from "@/components/ui/project-cover";
-import { Badge } from "@/components/ui/badge";
+import { HulySection, HulySectionHeader } from "@/components/ui/huly-section";
+import { HulyBentoTile } from "@/components/ui/huly-bento-tile";
 import { getAllProjects } from "@/lib/projects";
+import { getDemoForProject } from "@/lib/demo-videos";
+import { cn } from "@/lib/utils";
 
 export function Projects() {
   const projects = getAllProjects();
+  const flagship = projects.find((p) => p.flagship) ?? projects[0];
+  const handover = projects.find((p) => p.slug === "equipment-handover")!;
+  const aiAssistant = projects.find((p) => p.slug === "ai-manufacturing-assistant")!;
+  const fraudguard = projects.find((p) => p.slug === "fraudguard")!;
 
   return (
-    <section id="projects" className="relative section bg-bg overflow-hidden">
-      <TechBackground variant="mesh" lava="highlight" opacity={0.5} />
+    <HulySection id="projects">
       <div className="relative z-10 max-site">
-        <ScrollReveal>
-          <SectionHeader
-            label="Work"
-            title="Featured projects"
-            description="Problem → Solution → Impact. Every build tells a story."
-          />
-        </ScrollReveal>
+        <HulySectionHeader
+          label="Work"
+          title="Featured projects"
+          description="Problem → Solution → Impact. Every build tells a story."
+        />
 
-        <div className="grid gap-6">
-          {projects.map((project, i) => (
-            <ScrollReveal key={project.slug}>
-              <TiltCard>
-                <GlowCard
-                  as="a"
-                  href={`/projects/${project.slug}`}
-                  className="block w-full"
-                >
-                  <div className="p-8 md:p-10">
-                    <ProjectCover
-                      src={project.image}
-                      alt={project.title}
-                      gradient={project.gradient}
-                      className="mb-8 h-44 md:h-52"
-                      priority={i === 0}
-                    />
-                    <div className="flex flex-wrap items-center gap-3 mb-3">
-                      {project.flagship && (
-                        <Badge className="border-accent/30 text-accent">Flagship</Badge>
-                      )}
-                      {project.metric && (
-                        <Badge className="border-border text-muted">{project.metric}</Badge>
-                      )}
-                    </div>
-                    <h3 className="text-2xl md:text-3xl font-semibold text-foreground">
-                      {project.title}
-                    </h3>
-                    <p className="mt-3 text-muted max-w-2xl">{project.description}</p>
+        <div className="grid gap-5 lg:grid-cols-12 lg:gap-6">
+          <div className="lg:col-span-8">
+            <HulyBentoTile
+              href={`/projects/${flagship.slug}`}
+              video={getDemoForProject(flagship).video}
+              poster={getDemoForProject(flagship).poster}
+              alt={flagship.title}
+              title={flagship.title}
+              caption={flagship.demoCaption}
+              metric={flagship.metric}
+              flagship
+              aspect="wide"
+              priority
+              className="h-full"
+            />
+          </div>
 
-                    <div className="mt-8 grid gap-4 md:grid-cols-3 text-sm">
-                      <div>
-                        <p className="label text-red-400/70">Problem</p>
-                        <p className="mt-2 text-muted line-clamp-3">{project.problem}</p>
-                      </div>
-                      <div>
-                        <p className="label text-accent">Solution</p>
-                        <p className="mt-2 text-muted line-clamp-3">{project.solution}</p>
-                      </div>
-                      <div>
-                        <p className="label text-emerald-400/70">Impact</p>
-                        <p className="mt-2 text-muted line-clamp-3">{project.impact}</p>
-                      </div>
-                    </div>
+          <div className="lg:col-span-4">
+            <HulyBentoTile
+              href={`/projects/${handover.slug}`}
+              video={getDemoForProject(handover).video}
+              poster={getDemoForProject(handover).poster}
+              alt={handover.title}
+              title={handover.title}
+              caption={handover.demoCaption}
+              metric={handover.metric}
+              aspect="square"
+              className="h-full"
+            />
+          </div>
 
-                    <div className="mt-6 flex flex-wrap gap-2">
-                      {project.stack.map((s) => (
-                        <Badge key={s}>{s}</Badge>
-                      ))}
-                    </div>
+          <div className="lg:col-span-4">
+            <HulyBentoTile
+              href={`/projects/${aiAssistant.slug}`}
+              video={getDemoForProject(aiAssistant).video}
+              poster={getDemoForProject(aiAssistant).poster}
+              alt={aiAssistant.title}
+              title={aiAssistant.title}
+              caption={aiAssistant.demoCaption}
+              metric={aiAssistant.metric}
+              aspect="square"
+              className="h-full"
+            />
+          </div>
 
-                    <p className="mt-6 text-sm text-accent">View case study →</p>
-                  </div>
-                </GlowCard>
-              </TiltCard>
-            </ScrollReveal>
-          ))}
+          <div className={cn("lg:col-span-8")}>
+            <HulyBentoTile
+              href={`/projects/${fraudguard.slug}`}
+              video={getDemoForProject(fraudguard).video}
+              poster={getDemoForProject(fraudguard).poster}
+              alt={fraudguard.title}
+              title={fraudguard.title}
+              caption={fraudguard.demoCaption}
+              metric={fraudguard.metric}
+              aspect="wide"
+              className="h-full"
+            />
+          </div>
         </div>
       </div>
-    </section>
+    </HulySection>
   );
 }

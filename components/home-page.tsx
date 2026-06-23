@@ -7,6 +7,7 @@ import { Hero } from "@/components/sections/hero";
 import { About } from "@/components/sections/about";
 import { Impact } from "@/components/sections/impact";
 import { Projects } from "@/components/sections/projects";
+import { ProjectDemoShowcase } from "@/components/sections/project-demo-showcase";
 import { Testimonials } from "@/components/sections/testimonials";
 import { Writing } from "@/components/sections/writing";
 import { Experience } from "@/components/sections/experience";
@@ -41,6 +42,7 @@ export function HomePage() {
         <About />
         <Impact />
         <Projects />
+        <ProjectDemoShowcase />
         <Testimonials />
         <Writing />
         <Experience />
