@@ -24,8 +24,8 @@ const ScrollRobot = dynamic(
   { ssr: false }
 );
 
-const AuroraVeins = dynamic(
-  () => import("@/components/motion/aurora-veins").then((m) => m.AuroraVeins),
+const LavaVeins = dynamic(
+  () => import("@/components/motion/lava-veins").then((m) => m.LavaVeins),
   { ssr: false }
 );
 
@@ -36,7 +36,7 @@ export function HomePage() {
       <ScrollRobot />
       <Nav />
       <main className="relative">
-        <AuroraVeins />
+        <LavaVeins />
         <Hero />
         <About />
         <Impact />

@@ -18,7 +18,7 @@ export function Impact() {
           {impact.map((metric) => (
             <ScrollReveal key={metric.label}>
               <GlowCard className="p-8 text-center">
-                <p className="text-4xl md:text-5xl font-semibold text-[var(--color-iris-bright)] tabular-nums">
+                <p className="text-4xl md:text-5xl font-semibold text-accent tabular-nums">
                   <CountUp value={metric.value} suffix={metric.suffix} />
                 </p>
                 <p className="mt-3 text-sm text-muted">{metric.label}</p>
