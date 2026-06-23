@@ -57,47 +57,6 @@ function MetaHub() {
   );
 }
 
-function MetaBrainBeam() {
-  return (
-    <svg
-      className="metabrain-beam-svg"
-      viewBox="0 0 200 420"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden
-      preserveAspectRatio="none"
-    >
-      <defs>
-        <linearGradient id="metabrainBeamGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#5683da" stopOpacity="0.9" />
-          <stop offset="45%" stopColor="#5ec8ff" stopOpacity="1" />
-          <stop offset="100%" stopColor="#8b7cff" stopOpacity="0.7" />
-        </linearGradient>
-        <filter id="metabrainBeamBlur" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur stdDeviation="8" />
-        </filter>
-      </defs>
-      <path
-        className="metabrain-beam-glow"
-        d="M 155 30 C 155 120, 155 200, 155 260 C 155 310, 120 340, 70 370"
-        stroke="url(#metabrainBeamGrad)"
-        strokeWidth="28"
-        strokeLinecap="round"
-        filter="url(#metabrainBeamBlur)"
-        opacity="0.85"
-      />
-      <path
-        className="metabrain-beam-core"
-        d="M 155 30 C 155 120, 155 200, 155 260 C 155 310, 120 340, 70 370"
-        stroke="url(#metabrainBeamGrad)"
-        strokeWidth="10"
-        strokeLinecap="round"
-      />
-      <circle className="metabrain-beam-pulse" cx="155" cy="200" r="18" fill="#5ec8ff" filter="url(#metabrainBeamBlur)" />
-    </svg>
-  );
-}
-
 function tile(id: string) {
   return metabrain.tiles.find((t) => t.id === id)!;
 }
@@ -105,8 +64,6 @@ function tile(id: string) {
 export function MetaBrainBento() {
   return (
     <div className="metabrain-bento">
-      <MetaBrainBeam />
-
       <div className="metabrain-grid">
         <MetaCard tile={tile("automate")} className="metabrain-area-tasks" />
         <MetaCard tile={tile("plan")} className="metabrain-area-plan" />

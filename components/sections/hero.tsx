@@ -22,11 +22,6 @@ const LavaFlow = dynamic(
   { ssr: false }
 );
 
-const HeroMindMaps = dynamic(
-  () => import("@/components/motion/hero-mind-maps").then((m) => m.HeroMindMaps),
-  { ssr: false }
-);
-
 const HeroSplineRobot = dynamic(
   () => import("@/components/motion/hero-spline-robot").then((m) => m.HeroSplineRobot),
   { ssr: false }
@@ -66,7 +61,6 @@ function HeroContent() {
     <>
       <LavaFlow intensity="hero" />
       <TechBackground variant="mesh" opacity={0.45} />
-      <HeroMindMaps />
 
       <div className="relative z-10 max-site section w-full flex flex-col items-center text-center">
         <motion.div
@@ -75,26 +69,37 @@ function HeroContent() {
           animate="visible"
           className="w-full max-w-5xl"
         >
-          <div className="hero-name-row flex flex-col items-center justify-center gap-6 sm:gap-4 lg:flex-row lg:items-center lg:justify-center lg:gap-6 xl:gap-10">
-            <h1 className="hero-name-shimmer display-name text-[clamp(3rem,12vw,6rem)] text-foreground shrink-0">
-              {nameParts.map((part, i) => (
-                <motion.span
-                  key={part}
-                  variants={fadeUp}
-                  transition={{ ...spring, delay: 0.2 + i * 0.12 }}
-                  className="inline-block mr-[0.2em]"
-                >
-                  {part}
-                </motion.span>
-              ))}
-            </h1>
-            <motion.div
+          <div className="flex flex-col items-center">
+            <div className="hero-name-row flex flex-col items-center justify-center gap-6 sm:gap-4 lg:flex-row lg:items-center lg:justify-center lg:gap-6 xl:gap-10">
+              <h1 className="hero-name-shimmer display-name text-[clamp(3rem,12vw,6rem)] text-foreground shrink-0">
+                {nameParts.map((part, i) => (
+                  <motion.span
+                    key={part}
+                    variants={fadeUp}
+                    transition={{ ...spring, delay: 0.2 + i * 0.12 }}
+                    className="inline-block mr-[0.2em]"
+                  >
+                    {part}
+                  </motion.span>
+                ))}
+              </h1>
+              <motion.div
+                variants={fadeUp}
+                transition={{ ...spring, delay: 0.35 }}
+                className="hero-spline-slot shrink-0"
+              >
+                <HeroSplineRobot />
+              </motion.div>
+            </div>
+
+            <motion.p
               variants={fadeUp}
-              transition={{ ...spring, delay: 0.35 }}
-              className="hero-spline-slot shrink-0"
+              transition={{ ...spring, delay: 0.42 }}
+              className="hero-motto mt-4 md:mt-5 text-base md:text-lg font-light italic tracking-wide text-accent/90 min-h-[1.75rem] flex items-center justify-center"
+              aria-live="polite"
             >
-              <HeroSplineRobot />
-            </motion.div>
+              <RotatingText messages={SITE.heroMotto} intervalMs={3200} />
+            </motion.p>
           </div>
 
           <motion.p
