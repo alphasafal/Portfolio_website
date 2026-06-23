@@ -272,6 +272,69 @@ body {
   opacity: 0.65;
 }
 
+/* ── Hero Spline robot (right of name) ── */
+
+.hero-name-row {
+  width: 100%;
+}
+
+.hero-spline-slot {
+  width: min(72vw, 220px);
+  height: min(72vw, 220px);
+}
+
+@media (min-width: 640px) {
+  .hero-spline-slot {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-spline-slot {
+    width: 280px;
+    height: 300px;
+    margin-top: 0.25rem;
+  }
+
+  .hero-name-row {
+    flex-wrap: nowrap;
+  }
+}
+
+.hero-spline-robot {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  pointer-events: auto;
+}
+
+.hero-spline-robot-canvas,
+.hero-spline-robot canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.hero-spline-robot-shimmer {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(139, 124, 255, 0.08) 0%,
+    rgba(255, 107, 53, 0.06) 50%,
+    rgba(139, 124, 255, 0.08) 100%
+  );
+  animation: hero-spline-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes hero-spline-pulse {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 0.7; }
+}
+
 /* ── Hero name shimmer ── */
 
 .hero-name-shimmer {

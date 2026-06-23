@@ -27,6 +27,11 @@ const HeroMindMaps = dynamic(
   { ssr: false }
 );
 
+const HeroSplineRobot = dynamic(
+  () => import("@/components/motion/hero-spline-robot").then((m) => m.HeroSplineRobot),
+  { ssr: false }
+);
+
 const nameParts = SITE.name.split(" ");
 
 function Tag({
@@ -68,20 +73,29 @@ function HeroContent() {
           variants={staggerContainer}
           initial="hidden"
           animate="visible"
-          className="max-w-3xl"
+          className="w-full max-w-5xl"
         >
-          <h1 className="hero-name-shimmer display-name text-[clamp(3rem,12vw,6rem)] text-foreground">
-            {nameParts.map((part, i) => (
-              <motion.span
-                key={part}
-                variants={fadeUp}
-                transition={{ ...spring, delay: 0.2 + i * 0.12 }}
-                className="inline-block mr-[0.2em]"
-              >
-                {part}
-              </motion.span>
-            ))}
-          </h1>
+          <div className="hero-name-row flex flex-col items-center justify-center gap-6 sm:gap-4 lg:flex-row lg:items-center lg:justify-center lg:gap-6 xl:gap-10">
+            <h1 className="hero-name-shimmer display-name text-[clamp(3rem,12vw,6rem)] text-foreground shrink-0">
+              {nameParts.map((part, i) => (
+                <motion.span
+                  key={part}
+                  variants={fadeUp}
+                  transition={{ ...spring, delay: 0.2 + i * 0.12 }}
+                  className="inline-block mr-[0.2em]"
+                >
+                  {part}
+                </motion.span>
+              ))}
+            </h1>
+            <motion.div
+              variants={fadeUp}
+              transition={{ ...spring, delay: 0.35 }}
+              className="hero-spline-slot shrink-0"
+            >
+              <HeroSplineRobot />
+            </motion.div>
+          </div>
 
           <motion.p
             variants={fadeUp}
