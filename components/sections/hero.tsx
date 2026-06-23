@@ -7,6 +7,7 @@ import { SITE } from "@/lib/constants";
 import { fadeUp, spring, staggerContainer } from "@/lib/motion";
 import { scrollToSection } from "@/lib/scroll";
 import { MagneticButton } from "@/components/motion/magnetic-button";
+import { FlameButton } from "@/components/motion/flame-button";
 import { RotatingText } from "@/components/motion/rotating-text";
 import { TechBackground } from "@/components/motion/tech-background";
 import {
@@ -120,9 +121,9 @@ function HeroContent() {
               </Button>
             </MagneticButton>
             <MagneticButton>
-              <Button size="lg" variant="outline" onClick={() => scrollToSection("contact")}>
+              <FlameButton size="lg" onClick={() => scrollToSection("contact")}>
                 Get In Touch
-              </Button>
+              </FlameButton>
             </MagneticButton>
           </motion.div>
         </motion.div>

@@ -242,6 +242,16 @@ body {
   .glow-card-tint-on::after {
     display: none !important;
   }
+
+  .flame-btn-leaving {
+    animation: none !important;
+    box-shadow: none !important;
+  }
+
+  .flame-btn-active .flame-btn-fill {
+    transform: scale(1) !important;
+    transition: none !important;
+  }
 }
 
 /* ── Lava flow ── */
@@ -375,7 +385,67 @@ body {
   }
 }
 
+/* ── Flame button (orange fill + leave pulse) ── */
+
+.flame-btn {
+  --flame-x: 50%;
+  --flame-y: 50%;
+  transition:
+    border-color 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.4s ease;
+}
+
+.flame-btn-fill {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8c5a 100%);
+  transform: scale(0);
+  transform-origin: var(--flame-x) var(--flame-y);
+  transition: transform 0.35s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.flame-btn-label {
+  transition: color 0.25s ease;
+}
+
+.flame-btn-active .flame-btn-fill {
+  transform: scale(1.8);
+}
+
+.flame-btn-active {
+  border-color: #ff6b35;
+}
+
+.flame-btn-active .flame-btn-label {
+  color: #fff;
+}
+
+.flame-btn-leaving {
+  box-shadow: 0 0 28px rgba(255, 107, 53, 0.55);
+}
+
+.flame-btn-reduced.flame-btn-active .flame-btn-fill {
+  transform: scale(1);
+  transition: none;
+}
+
 @media (pointer: coarse) {
+  .flame-btn:active .flame-btn-fill {
+    transform: scale(1.8);
+  }
+
+  .flame-btn:active {
+    border-color: #ff6b35;
+  }
+
+  .flame-btn:active .flame-btn-label {
+    color: #fff;
+  }
+
   .glow-card-beam-on::before {
     opacity: 0.25;
     animation-duration: 5s;
